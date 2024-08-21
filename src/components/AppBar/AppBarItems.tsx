@@ -5,11 +5,14 @@ import {
   betSelector,
   winSelector,
 } from "../../state/selectors";
+import { useTranslation } from "../../hooks/useTranslations";
 
 export const AppBarItems = () => {
   const balance = useSelector(balanceSelector);
   const win = useSelector(winSelector);
   const bet = useSelector(betSelector);
+
+  const t = useTranslation();
 
   const items = [balance, win, bet];
 
@@ -27,7 +30,7 @@ export const AppBarItems = () => {
                 color: "#cfaf7c",
               }}
             >
-              <p>{item.itemName}</p>
+              <p>{t(item.itemName)}:</p>
               <p style={{ padding: "0 4px", color: "white" }}>
                 {Intl.NumberFormat("en-EN", {
                   style: "currency",

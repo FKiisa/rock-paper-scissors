@@ -1,3 +1,4 @@
+import { useTranslation } from "../../hooks/useTranslations";
 import { EToolTipContent } from "../../types/Types";
 import "./ToolTip.css";
 
@@ -10,10 +11,13 @@ export const ToolTip = ({
   message = EToolTipContent.BET_ON_POSITION,
   onClose,
 }: ToolTipProps) => {
+  const t = useTranslation();
   return (
     <div className="toolTip">
-      <button className="toolTipCancelButton" onClick={onClose}>X</button>
-      <span className="toolTipText">{message}</span>
+      <button className="toolTipCancelButton" onClick={onClose}>
+        X
+      </button>
+      <span className="toolTipText">{t(message)}</span>
     </div>
   );
 };

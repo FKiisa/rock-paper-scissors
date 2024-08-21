@@ -8,7 +8,7 @@ import {
   EGameState,
   EToolTipContent,
 } from "../../types/Types";
-import { placeBet, playGame, resetGame } from "../../state/gameSlice";
+import { clearBets, placeBet, playGame } from "../../state/gameSlice";
 import {
   betSelector,
   gameStateSelector,
@@ -16,6 +16,7 @@ import {
 } from "../../state/selectors";
 import { useState } from "react";
 import { ToolTip } from "../Tooltip/ToolTip";
+import { useTranslation } from "../../hooks/useTranslations";
 
 export const GameController = () => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -24,13 +25,12 @@ export const GameController = () => {
   );
   const playerBets = useSelector(playerBetsSelector);
   const gameState = useSelector(gameStateSelector);
-  const isPlayState = gameState === EGameState.PLAY;
   const getBetPositions = GameControllerUtil.getAllBetPositions();
   const getPositionsWithBet = GameControllerUtil.getPositionsWithBet();
   const canPlaceBet = GameControllerUtil.canPlaceBet(EAmounts.BET_500);
   const bets = useSelector(betSelector);
   const dispatch = useDispatch();
-  // Handles adding new bets
+  const t = useTranslation();
   const handleBet = (position: EBetPosition) => {
     if (!canPlaceBet) {
       setToolTipMessage(EToolTipContent.INSUFFICIENT_FUNDS);
@@ -60,8 +60,8 @@ export const GameController = () => {
   };
 
   // Handles reset button click
-  const handleReset = () => {
-    dispatch(resetGame());
+  const handleClear = () => {
+    dispatch(clearBets());
     setShowTooltip(false);
   };
 
@@ -87,9 +87,9 @@ export const GameController = () => {
     <>
       <div className="gameControls">
         <div className="betContainer">
-          {!isPlayState && (
+          {gameState === EGameState.START && (
             <div className="betContainerTitle">
-              <p>Pick your positions</p>
+              <p>{t("pickYourPositions")}</p>
             </div>
           )}
           {getBetPositions.map((position, index) => (
@@ -98,7 +98,7 @@ export const GameController = () => {
               className={`betPosition ${GameControllerUtil.getPositionColor(
                 position
               )}`}
-              disabled={isPlayState}
+              disabled={gameState !== EGameState.START}
               onClick={() => handleBet(position)}
             >
               <div className="betItem">
@@ -108,7 +108,7 @@ export const GameController = () => {
                     position={position}
                   />
                 </div>
-                <p className="betItemPositionName">{position}</p>
+                <p className="betItemPositionName">{t(position)}</p>
               </div>
             </button>
           ))}
@@ -116,14 +116,14 @@ export const GameController = () => {
         <div className="actionContainer">
           <button
             className="action-item"
-            disabled={isPlayState}
+            disabled={gameState !== EGameState.START}
             onClick={() => handlePlay()}
           >
-            Play
+            {t("play")}
           </button>
-          {(bets.value > 0 && !isPlayState) && (
-            <button className="action-item" onClick={() => handleReset()}>
-              Clear
+          {bets.value > 0 && gameState === EGameState.START && (
+            <button className="action-item" onClick={() => handleClear()}>
+              {t("clear")}
             </button>
           )}
         </div>

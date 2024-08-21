@@ -23,6 +23,7 @@ export type TBetItem = {
 export enum EGameState {
   START = "START",
   PLAY = "PLAY",
+  ENDED = "ENDED"
 };
 
 export type TGameResult = {
@@ -52,9 +53,9 @@ export type TComputerBet = {
 };
 
 export enum EToolTipContent {
-  BET_ON_POSITION = "Bet on a position to play",
-  MAX_BETS_REACHED = "You can only bet on 2 positions at a time",
-  INSUFFICIENT_FUNDS = "Insufficient funds to place the bet",
+  BET_ON_POSITION = "betRequired",
+  MAX_BETS_REACHED = "maxBetsReached",
+  INSUFFICIENT_FUNDS = "insufficientFunds",
 }
 
 export enum EAmounts {

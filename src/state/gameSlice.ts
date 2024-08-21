@@ -14,7 +14,7 @@ import {
   getRandomChoice,
 } from "./gameHelpers";
 
-interface GameState {
+interface IGameState {
   balance: TBalance;
   win: TWin;
   bet: TBet;
@@ -24,10 +24,10 @@ interface GameState {
   state: EGameState;
 }
 
-const initialState: GameState = {
-  balance: { itemName: "Balance: ", value: 5000 },
-  win: { itemName: "Win: ", value: 0 },
-  bet: { itemName: "Bet: ", value: 0 },
+const initialState: IGameState = {
+  balance: { itemName: "Balance", value: 5000 },
+  win: { itemName: "Win", value: 0 },
+  bet: { itemName: "Bet", value: 0 },
   playerBets: [],
   computerBet: null,
   gameResult: null,
@@ -35,12 +35,12 @@ const initialState: GameState = {
 };
 
 /* Helper functions */
-const canPlaceBet = (state: GameState, newBetAmount: number): boolean => {
+const canPlaceBet = (state: IGameState, newBetAmount: number): boolean => {
   const totalBetAmount = state.bet.value + newBetAmount;
   return totalBetAmount <= state.balance.value;
 };
 
-const updateBet = (state: GameState, newBet: TBetItem) => {
+const updateBet = (state: IGameState, newBet: TBetItem) => {
   const existingBet = state.playerBets.find(
     (bet) => bet.position === newBet.position
   );
@@ -54,23 +54,28 @@ const updateBet = (state: GameState, newBet: TBetItem) => {
   state.bet.value += newBet.amount;
 };
 
-const handlePlayGame = (state: GameState) => {
+const handlePlayGame = (state: IGameState) => {
   if (state.balance.value < state.bet.value) return;
-
   state.state = EGameState.PLAY;
   state.computerBet = getRandomChoice();
   const balanceChange = calculateBalanceChange(
     state.playerBets,
-    state.computerBet!
+    state.computerBet
   );
-
-  state.balance.value += balanceChange;
-  state.win.value = balanceChange;
   state.gameResult = determineGameResult(
     state.playerBets,
     state.computerBet,
     balanceChange
   );
+  state.balance.value -= state.bet.value;
+};
+
+const handleRoundEnd = (state: IGameState) => {
+  if (!state.gameResult) return;
+  state.state = EGameState.ENDED;
+  state.balance.value += state.bet.value; // re add bet value to balance to ensure balance is calculated correctly
+  state.balance.value += state.gameResult.balanceChange;
+  state.win.value = state.gameResult.balanceChange;
 };
 
 const gameSlice = createSlice({
@@ -88,6 +93,9 @@ const gameSlice = createSlice({
     playGame: (state) => {
       handlePlayGame(state);
     },
+    roundEnd: (state) => {
+      handleRoundEnd(state);
+    },
     clearBets: (state) => {
       state.playerBets = [];
       state.bet.value = 0;
@@ -102,6 +110,7 @@ const gameSlice = createSlice({
   },
 });
 
-export const { placeBet, playGame, resetGame, clearBets } = gameSlice.actions;
+export const { placeBet, playGame, resetGame, clearBets, roundEnd } =
+  gameSlice.actions;
 
 export default gameSlice.reducer;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useTranslation } from "../../hooks/useTranslations";
 import { EWinner, TGameResult } from "../../types/Types";
 import "./GameResult.css";
 import { GameResultUtil } from "./utils/GameResult.util";
@@ -10,6 +10,7 @@ export type TGameResultProps = {
 
 export const GameResult = ({ result, onReset }: TGameResultProps) => {
   const { balanceChange, winner, playerBets, computerChoice } = result;
+  const t = useTranslation();
   const winningHand = GameResultUtil.findWinningHand(
     playerBets,
     computerChoice
@@ -17,24 +18,24 @@ export const GameResult = ({ result, onReset }: TGameResultProps) => {
 
   const getResultString = () => {
     if (winner === EWinner.DRAW) {
-      return `DRAW WITH ${winningHand.winningHand}`;
+      return `${t("drawWith")} ${t(winningHand.winningHand)}`;
     } else {
-      return `${winner} WON WITH ${winningHand.winningHand}`;
+      return `${t(winner)} ${t("wonWith")} ${t(winningHand.winningHand)}`;
     }
   };
 
   const getSubResultString = () => {
     if (winner === EWinner.DRAW) {
-      return `YOU GET`;
+      return `${t("youGet")}`;
     } else if (winner === EWinner.PLAYER) {
-      return `YOU WIN`;
+      return `${t("youWin")}`;
     } else {
-      return `YOU LOSE`;
+      return `${t("youLose")}`;
     }
   };
 
   const getWinAmount = () => {
-    if (winner === EWinner.DRAW) return "MONEY BACK";
+    if (winner === EWinner.DRAW) return t("moneyBack");
     else {
       return Intl.NumberFormat("en-EN", {
         style: "currency",
@@ -43,11 +44,9 @@ export const GameResult = ({ result, onReset }: TGameResultProps) => {
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      onReset();
-    }, 3500);
-  }, [onReset]);
+  setTimeout(() => {
+    onReset();
+  }, 3500);
 
   return (
     <div className="gameResult">

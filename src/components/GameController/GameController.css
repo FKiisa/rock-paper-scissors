@@ -73,6 +73,7 @@
     transform: translateX(-50%);
     text-align: center;
     width: 100%;
+    text-transform: uppercase;
 }
 
 .betChipWrapper {
