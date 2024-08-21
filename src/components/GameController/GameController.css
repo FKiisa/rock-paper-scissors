@@ -1,0 +1,118 @@
+.gameControls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .gameControls {
+        text-align: center;
+    }
+}
+
+.betPosition {
+    width: 166px;
+    height: 128px;
+    margin: 8px 16px;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.betPosition:disabled {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.position-rock {
+    color: #2e4d97;
+    background-color: #211f4f;
+    border: 4px solid #2e4d97;
+    border-radius: 8px;
+}
+
+.position-paper {
+    color: #187e3a;
+    background-color: #1a381d;
+    border: 4px solid #187e3a;
+    border-radius: 8px
+}
+
+.position-scissors {
+    color: #9a0e30;
+    background-color: #50091e;
+    border: 4px solid #9a0e30;
+    border-radius: 8px
+}
+
+.betContainerTitle {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #b19b73;
+}
+
+.betItem {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.betItemPositionName {
+    margin: 0;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+}
+
+.betChipWrapper {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actionContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin: 16px 0;
+    justify-content: center;
+}
+
+.action-item {
+    width: 160px;
+    height: 60px;
+    padding: 8px 16px;
+    margin: 4px 4px;
+    cursor: pointer;
+    border: 2px solid #b19b73;
+    background-color: black;
+    color: #b19b73;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 90px;
+}
+.action-item:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.toolTip {
+    text-align: center;
+}

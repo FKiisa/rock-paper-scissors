@@ -1,0 +1,47 @@
+.player {
+    color: #16c359;
+}
+
+.computer {
+    color: #9a0e30;
+}
+
+.draw {
+    color: white;
+}
+
+.gameResultText {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.resultContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.winLose {
+    color: #b19b73;
+    margin: 0;
+    padding: 0 8px;
+}
+
+.amount {
+    color: white;
+    margin: 0;
+    padding: 0 8px;
+}
+
+@media only screen and (max-width: 768px) {
+    .gameResultText {
+        font-size: 24px;
+        margin: 0;
+    }
+    .resultContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+}

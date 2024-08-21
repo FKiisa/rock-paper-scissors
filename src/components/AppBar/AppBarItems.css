@@ -1,0 +1,6 @@
+.appBarItem {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  font-weight: bold;
+}

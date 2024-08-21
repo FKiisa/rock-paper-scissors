@@ -1,0 +1,33 @@
+.betChip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.betChipAmount {
+    border-radius: 90px;
+    color: white;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin-top: 8px;
+    border: 4px solid #225eff
+}
+
+.position-rock {
+    color: #2e4d97;
+    border-color: #2e4d97;
+}
+
+.position-paper {
+    color: #187e3a;
+    border-color: #187e3a;
+}
+
+.position-scissors {
+    color: #9a0e30;
+    border-color: #9a0e30;
+}
