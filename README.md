@@ -1,6 +1,10 @@
 # Rock Paper Scissors
 
-## Available Scripts
+## Live Demo
+
+If you just want to see the end result, please open the following link [https://rock-paper-scissors-six-zeta.vercel.app/](https://rock-paper-scissors-six-zeta.vercel.app/) for a deployed version of the task.
+
+## Guide
 
 Before anything else, in the project root, please run `npm install` or `npm i`, after successful package installation, in the project root you can now run 
 
