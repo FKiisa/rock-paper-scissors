@@ -20,7 +20,6 @@ export const getPositionColor = (position: EBetPosition): string => {
 
 export const getPositionsWithBet = (): TBetItem[] => {
   const playerBets = store.getState().game.playerBets;
-  console.log(playerBets);
   return playerBets;
 };
 
