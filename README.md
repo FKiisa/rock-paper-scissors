@@ -18,8 +18,8 @@ Before you begin, ensure you have met the following requirements:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/rock-paper-scissors-betting.git
-   cd rock-paper-scissors-betting
+   git clone https://github.com/FKiisa/rock-paper-scissors
+   cd rock-paper-scissors
    ```
 2. **Install dependencies**:
     ```bash
@@ -38,10 +38,10 @@ Before you begin, ensure you have met the following requirements:
 
 1. **Placing Bets**: 
    - Select Rock, Paper, or Scissors to place your bets. You can bet on one or two positions.
-   - Each bet is an increment of 500. The total bet will be deducted from your balance when you click "Start Game".
+   - Each bet is an increment of 500. The total bet will be deducted from your balance when you click "Play".
 
 2. **Starting the Game**:
-   - After placing your bets, click "Start Game" to see the result.
+   - After placing your bets, click "Play" to see the result.
    - The computer will randomly choose a position, and the outcome will be displayed.
 
 3. **Winning**:
