@@ -49,6 +49,18 @@
     border-radius: 8px
 }
 
+.winner-rock {
+    animation: win-rock 1.75s infinite;
+}
+
+.winner-paper {
+    animation: win-paper 1.75s infinite;
+}
+
+.winner-scissors {
+    animation: win-scissors 1.75s infinite;
+}
+
 .betContainerTitle {
     text-align: center;
     text-transform: uppercase;
@@ -117,3 +129,38 @@
 .toolTip {
     text-align: center;
 }
+
+@keyframes win-rock {
+    0% {
+      box-shadow: 0 0 2px #2e4d97, 0 0 4px #2e4d97, 0 0 6px #2e4d97, 0 0 8px #2e4d97;
+    }
+    50% {
+      box-shadow: 0 0 4px #2e4d97, 0 0 8px #2e4d97, 0 0 12px #2e4d97, 0 0 16px #2e4d97;
+    }
+    100% {
+        box-shadow: 0 0 2px #2e4d97, 0 0 4px #2e4d97, 0 0 6px #2e4d97, 0 0 8px #2e4d97;
+    }
+  }
+  @keyframes win-paper {
+    0% {
+      box-shadow: 0 0 2px #187e3a, 0 0 4px #187e3a, 0 0 6px #187e3a, 0 0 8px #187e3a;
+    }
+    50% {
+      box-shadow: 0 0 4px #187e3a, 0 0 8px #187e3a, 0 0 12px #187e3a, 0 0 16px #187e3a;
+    }
+    100% {
+        box-shadow: 0 0 2px #187e3a, 0 0 4px #187e3a, 0 0 6px #187e3a, 0 0 8px #187e3a;
+    }
+  }
+  @keyframes win-scissors {
+    0% {
+      box-shadow: 0 0 2px #9a0e30, 0 0 4px #9a0e30, 0 0 6px #9a0e30, 0 0 8px #9a0e30;
+    }
+    50% {
+      box-shadow: 0 0 4px #9a0e30, 0 0 8px #9a0e30, 0 0 12px #9a0e30, 0 0 16px #9a0e30;
+    }
+    100% {
+        box-shadow: 0 0 2px #9a0e30, 0 0 4px #9a0e30, 0 0 6px #9a0e30, 0 0 8px #9a0e30;
+    }
+  }
+  

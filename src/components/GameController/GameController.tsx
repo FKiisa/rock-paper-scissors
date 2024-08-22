@@ -28,9 +28,19 @@ export const GameController = () => {
   const getBetPositions = GameControllerUtil.getAllBetPositions();
   const getPositionsWithBet = GameControllerUtil.getPositionsWithBet();
   const canPlaceBet = GameControllerUtil.canPlaceBet(EAmounts.BET_500);
+  const getPlayerWinnings = GameControllerUtil.getPlayerWinningPositions();
   const bets = useSelector(betSelector);
   const dispatch = useDispatch();
   const t = useTranslation();
+
+  const handleWinAnimation = (position: EBetPosition) => {
+    if (getPlayerWinnings) {
+      return position === getPlayerWinnings.winningHand
+        ? `winner-${position.toLowerCase()}`
+        : "";
+    }
+  };
+
   const handleBet = (position: EBetPosition) => {
     if (!canPlaceBet) {
       setToolTipMessage(EToolTipContent.INSUFFICIENT_FUNDS);
@@ -59,13 +69,11 @@ export const GameController = () => {
     setShowTooltip(false);
   };
 
-  // Handles reset button click
   const handleClear = () => {
     dispatch(clearBets());
     setShowTooltip(false);
   };
 
-  // Handles play button click
   const handlePlay = () => {
     if (bets.value === 0) {
       setShowTooltip(true);
@@ -97,7 +105,7 @@ export const GameController = () => {
               key={index + position}
               className={`betPosition ${GameControllerUtil.getPositionColor(
                 position
-              )}`}
+              )} ${handleWinAnimation(position)}`}
               disabled={gameState !== EGameState.START}
               onClick={() => handleBet(position)}
             >
