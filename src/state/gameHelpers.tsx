@@ -69,29 +69,24 @@ const calculateDoubleBetResult = (
   const firstBetDraws = isDraw(firstBet.position, computerChoice);
   const secondBetDraws = isDraw(secondBet.position, computerChoice);
 
-  if (firstBetDraws && secondBetDraws) {
-    return firstBet.amount + secondBet.amount;
+  if (firstBetWins) {
+    return firstBet.amount * 3;
+  } else if (secondBetWins) {
+    return secondBet.amount * 3;
   }
+
+  // If one of the bets draws, we ignore it and do not return any payout
   if (firstBetDraws || secondBetDraws) {
-    if (firstBetWins || secondBetWins) {
-      return (
-        (firstBetWins ? firstBet.amount : secondBet.amount) * 3 +
-        (firstBetDraws ? firstBet.amount : secondBet.amount)
-      );
-    }
-    return firstBetDraws ? firstBet.amount : secondBet.amount;
+    return 0;
   }
-  if (firstBetWins || secondBetWins) {
-    return (firstBetWins ? firstBet.amount : secondBet.amount) * 3;
-  }
-  return 0;
+
+  return 0; // Loss
 };
 
 export const calculateBalanceChange = (
   bets: TBetItem[],
   computerChoice: EBetPosition
 ): number => {
-  const totalBetAmount = bets.reduce((sum, bet) => sum + bet.amount, 0);
   let balanceChange = 0;
 
   if (bets.length === 1) {
@@ -100,5 +95,6 @@ export const calculateBalanceChange = (
     balanceChange = calculateDoubleBetResult(bets[0], bets[1], computerChoice);
   }
 
+  const totalBetAmount = bets.reduce((sum, bet) => sum + bet.amount, 0);
   return balanceChange - totalBetAmount;
 };

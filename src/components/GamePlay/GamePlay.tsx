@@ -6,6 +6,9 @@ import { GameResult } from "../GameResult/GameResult";
 import { resetGame, roundEnd } from "../../state/gameSlice";
 import { EGameState } from "../../types/Types";
 import { useTranslation } from "../../hooks/useTranslations";
+import {
+  findMostCompatibleBet,
+} from "../GameResult/utils/GameResult.util";
 
 export const GamePlay = () => {
   const gameResult = useSelector(gameResultSelector);
@@ -34,19 +37,19 @@ export const GamePlay = () => {
   };
 
   if (!gameResult) {
-    return <></>;
+    return null;
   }
 
   const { playerBets, computerChoice } = gameResult;
-  const playerChoice = playerBets.reduce((highest, current) => {
-    return current.amount > highest.amount ? current : highest;
-  });
+
+  const mostCompatibleBet = findMostCompatibleBet(playerBets, computerChoice);
+
   return (
     <>
       {!showResult && (
         <div className="gameWrapper">
           <div className="common player">
-            <p className="choiceLabel">{t(playerChoice?.position)}</p>
+            <p className="choiceLabel">{t(mostCompatibleBet.position)}</p>
             <p className="hintLabel">{t("player")}</p>
           </div>
           <p className="versusLabel">{t("VS")}</p>
