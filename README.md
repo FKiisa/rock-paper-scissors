@@ -1,28 +1,54 @@
-# Rock Paper Scissors
+# Rock-Paper-Scissors Betting Game
 
-## Live Demo
+## Overview
 
-If you just want to see the end result, please open the following link [https://rock-paper-scissors-six-zeta.vercel.app/](https://rock-paper-scissors-six-zeta.vercel.app/) for a deployed version of the task.
+This is a Rock-Paper-Scissors betting game built with React and TypeScript. Players can bet on one or two positions (Rock, Paper, Scissors) with a starting balance and earn rewards based on the outcome. The application is designed with modular components, state management using Redux, and follows strict TypeScript typing for robust error handling and scalability.
 
-## Guide
+You can view a live version of the application [here](https://rock-paper-scissors-six-zeta.vercel.app/).
 
-Before anything else, in the project root, please run `npm install` or `npm i`, after successful package installation, in the project root you can now run 
+## Installation and Setup
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Before you begin, ensure you have met the following requirements:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Node.js and npm installed on your machine.
+
+### Installation Steps
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/rock-paper-scissors-betting.git
+   cd rock-paper-scissors-betting
+   ```
+2. **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3. **Start the project**:
+    ```bash
+    npm start
+    ```
+4. **Build for production**:
+    ```bash
+    npm build
+    ```
+
+## How to Use the App
+
+1. **Placing Bets**: 
+   - Select Rock, Paper, or Scissors to place your bets. You can bet on one or two positions.
+   - Each bet is an increment of 500. The total bet will be deducted from your balance when you click "Start Game".
+
+2. **Starting the Game**:
+   - After placing your bets, click "Start Game" to see the result.
+   - The computer will randomly choose a position, and the outcome will be displayed.
+
+3. **Winning**:
+   - If you bet on the correct position, your balance will be updated based on the winning rate (14x for one position, 3x for two positions).
+
+## Error Handling
+
+The app includes a custom `ErrorBoundary` that catches JavaScript errors anywhere in the child component tree, logs them, and displays a fallback UI (`ErrorPage`). This ensures that users have a smooth experience even when something goes wrong in the application.
 
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
