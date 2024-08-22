@@ -45,7 +45,6 @@ export const GameResult = ({ result, onReset }: TGameResultProps) => {
   };
 
   setTimeout(() => {
-    throw new Error("Test error!");
     onReset();
   }, 3500);
 
