@@ -20,5 +20,8 @@
     "youGet": "You Get",
     "betRequired": "Bet on a position to play",
     "maxBetsReached": "You can only bet on 2 positions at a time",
-    "insufficientFunds": "Insufficient funds to place the bet"
+    "insufficientFunds": "Insufficient funds to place the bet",
+    "generalError": "Oops! Something went wrong.",
+    "defaultErrorMessage": "An unexpected error occurred. Please try again later.",
+    "reloadPage": "Reload Page"
 }
