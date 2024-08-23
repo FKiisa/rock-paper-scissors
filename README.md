@@ -46,6 +46,7 @@ Before you begin, ensure you have met the following requirements:
 
 3. **Winning**:
    - If you bet on the correct position, your balance will be updated based on the winning rate (14x for one position, 3x for two positions).
+   - If you place one bet and it's a draw - the bet is returned to you, but when you place two bets, draw bet is not returned
 
 ## Error Handling
 
